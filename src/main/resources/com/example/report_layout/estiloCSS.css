@@ -1,0 +1,75 @@
+/* Fondo general */
+.root {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Estilo para los botones */
+.button {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.0, 0, 1);
+}
+
+#buscar {
+    -fx-background-color: #00BFFF; /* Azul claro */
+}
+
+#añadir {
+    -fx-background-color: #4CAF50; /* Verde */
+}
+
+#borrar {
+    -fx-background-color: #FF6347; /* Rojo */
+}
+
+#editar {
+    -fx-background-color: #FFD700; /* Amarillo */
+}
+
+#cargar {
+    -fx-background-color: #A9A9A9; /* Gris */
+}
+
+/* Hover effects */
+.button:hover {
+    -fx-opacity: 0.8;
+}
+
+/* Estilo para las etiquetas */
+.label {
+    -fx-text-fill: #333;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Estilo para el TableView */
+#tabla {
+    -fx-background-color: #E6E6FA; /* Fondo violeta */
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+}
+
+/* Estilo para las cabeceras de la tabla */
+.table-view .column-header {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Estilo para las filas de la tabla */
+.table-view .table-row-cell {
+    -fx-background-color: #ffffff;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #d9e8d9;
+}
+
+/* Estilo para el TextField */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-padding: 5px;
+}

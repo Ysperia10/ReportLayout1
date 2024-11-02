@@ -3,7 +3,6 @@ package com.example.report_layout.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class Report_Layout {
     private Registro registro;
@@ -19,9 +18,23 @@ public class Report_Layout {
             pst.setInt(2, registro.getSequence());
             pst.setDate(3, java.sql.Date.valueOf(registro.getCreateDate()));
             pst.setDate(4, java.sql.Date.valueOf(registro.getWriteDate()));
-            pst.setString(5, String.valueOf(registro.getName())); // Convierte Character a String
-            pst.setInt(6, viewId); // Establece el valor de view_id
-            pst.executeUpdate(); // Ejecuta la consulta
+            pst.setString(5, String.valueOf(registro.getName()));
+            pst.setInt(6, viewId);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void actualizar() throws SQLException {
+        String sql = "UPDATE report_layout SET sequence = ?, create_date = ?, write_date = ?, name = ? WHERE id = ?";
+        try (Connection conectar = Conexion.conectar(); PreparedStatement pst = conectar.prepareStatement(sql)) {
+            pst.setInt(1, registro.getSequence());
+            pst.setDate(2, java.sql.Date.valueOf(registro.getCreateDate()));
+            pst.setDate(3, java.sql.Date.valueOf(registro.getWriteDate()));
+            pst.setString(4, String.valueOf(registro.getName()));
+            pst.setInt(5, registro.getId());
+            pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -30,9 +43,9 @@ public class Report_Layout {
         String sql = "DELETE FROM report_layout WHERE id = ?";
         try (Connection conectar = Conexion.conectar(); PreparedStatement pst = conectar.prepareStatement(sql)) {
             pst.setInt(1, id);
-            pst.executeUpdate(); // Ejecuta la consulta
+            pst.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace(); // Manejo de errores SQL
+            System.out.println("Error al eliminar registro: " + e.getMessage());
         }
     }
 

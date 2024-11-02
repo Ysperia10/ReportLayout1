@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.application.Platform;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
+
+    @FXML
+    private TextField pantalla;
     @FXML
     private TableView<Registro> tabla;
     @FXML
@@ -131,7 +135,6 @@ public class HelloController {
 
 
     public void borrarRegistro(ActionEvent actionEvent) throws IOException {
-        // Verificar si hay un registro seleccionado
         Registro registroSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (registroSeleccionado == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -139,34 +142,67 @@ public class HelloController {
             alert.setHeaderText("No se ha seleccionado ningún registro");
             alert.setContentText("Por favor, selecciona un registro para eliminar.");
             alert.showAndWait();
-            return; // No se puede proceder sin selección
+            return;
         }
 
-        // Mostrar alerta de confirmación
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Eliminación");
         alert.setHeaderText("¿Está seguro de que desea eliminar este registro?");
         alert.setContentText("Esta acción no se puede deshacer.");
 
-        // Espera la respuesta del usuario
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    // Llamar al método eliminarRegistro directamente
                     Report_Layout.eliminarRegistro(registroSeleccionado.getId());
-
-                    // Recargar los registros para reflejar la eliminación
-                    cargarRegistro(actionEvent);
+                    cargarRegistro(actionEvent);  // Recargar los registros
                 } catch (SQLException e) {
-                    e.printStackTrace(); // Manejo de errores de eliminación
+                    System.err.println("Error al eliminar el registro: " + e.getMessage());
                 }
             }
         });
+    }
+    @FXML
+    public void buscarRegistro(ActionEvent actionEvent) {
+        String textoBusqueda = pantalla.getText().trim(); // Asegúrate de que pantalla esté inicializada
+        if (!textoBusqueda.isEmpty()) {
+            try {
+                int idBusqueda = Integer.parseInt(textoBusqueda); // Convierte el texto a un entero
+                // Busca el registro
+                Registro registroEncontrado = registros.stream()
+                        .filter(reg -> reg.getId() == idBusqueda) // Comparación de enteros
+                        .findFirst()
+                        .orElse(null);
+
+                if (registroEncontrado != null) {
+                    tabla.getSelectionModel().select(registroEncontrado);
+                    tabla.scrollTo(registroEncontrado);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("No encontrado");
+                    alert.setHeaderText("Registro no encontrado");
+                    alert.setContentText("No existe un registro con el ID ingresado.");
+                    alert.showAndWait();
+                }
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error de formato");
+                alert.setHeaderText("ID no válido");
+                alert.setContentText("Por favor, ingresa un ID numérico.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Campo vacío");
+            alert.setHeaderText("ID vacío");
+            alert.setContentText("Por favor, ingresa un ID para buscar.");
+            alert.showAndWait();
+        }
     }
 
 
 
 }
+
 
 
 

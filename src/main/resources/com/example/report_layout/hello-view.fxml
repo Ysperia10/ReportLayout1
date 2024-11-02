@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.report_layout.view.HelloController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.report_layout.view.HelloController" alignment="CENTER">
     <children>
-        <HBox prefHeight="100.0" prefWidth="600.0">
+        <HBox prefHeight="100.0" prefWidth="600.0" alignment="CENTER">
             <children>
-                <Label text="Web Editor Converter Test" underline="true">
+                <Label text="REPORT_LAYOUT" underline="true" alignment="CENTER">
                     <font>
                         <Font size="45.0" />
                     </font>
@@ -24,9 +24,9 @@
                 </Label>
             </children>
         </HBox>
-        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10">
+        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10" alignment="CENTER">
             <children>
-                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="ID:" translateY="-5.0" HBox.hgrow="ALWAYS">
+                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="ID:" translateY="-5.0" HBox.hgrow="ALWAYS" alignment="CENTER">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -34,47 +34,46 @@
                         <Insets left="20.0" />
                     </HBox.margin>
                 </Label>
-                <TextField fx:id="pantalla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" translateX="20.0" HBox.hgrow="ALWAYS">
+                <TextField fx:id="pantalla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" translateX="20.0" HBox.hgrow="ALWAYS" alignment="CENTER">
                     <HBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                     </HBox.margin>
                 </TextField>
-                <Button fx:id="buscar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="🔍" translateX="10.0" HBox.hgrow="ALWAYS">
+                <Button fx:id="buscar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="🔍" translateX="10.0" HBox.hgrow="ALWAYS" onAction="#buscarRegistro" alignment="CENTER">
                     <HBox.margin>
                         <Insets bottom="30.0" top="30.0" />
-                    </HBox.margin></Button>
-                <Button fx:id="añadir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#añadirRegistro" text="+" HBox.hgrow="ALWAYS">
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="añadir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#añadirRegistro" text="+" HBox.hgrow="ALWAYS" alignment="CENTER">
                     <HBox.margin>
                         <Insets bottom="30.0" left="130.0" top="30.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="borrar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#borrarRegistro" text="🗑" translateX="-10.0" HBox.hgrow="ALWAYS">
+                <Button fx:id="borrar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#borrarRegistro" text="🗑" translateX="-10.0" HBox.hgrow="ALWAYS" alignment="CENTER">
                     <HBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                     </HBox.margin></Button>
-                <Button fx:id="editar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarRegistro" text="✍" translateX="-20.0" HBox.hgrow="ALWAYS">
+                <Button fx:id="editar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarRegistro" text="✍" translateX="-20.0" HBox.hgrow="ALWAYS" alignment="CENTER">
                     <HBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                     </HBox.margin></Button>
-                <Button fx:id="cargar" layoutX="536.0" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cargarRegistro" text="💿​" translateX="-30.0">
+                <Button fx:id="cargar" layoutX="536.0" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cargarRegistro" text="💿​" translateX="-30.0" alignment="CENTER">
                     <HBox.margin>
                         <Insets bottom="30.0" top="30.0" />
                     </HBox.margin>
                 </Button>
             </children>
         </HBox>
-        <HBox maxHeight="Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-            <children>
-                <TableView fx:id="tabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="629.0" HBox.hgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="idCol" prefWidth="120.0" text="ID" />
-                        <TableColumn fx:id="sequenceCol" prefWidth="120.0" text="SEQUENCE" />
-                        <TableColumn fx:id="writeDateCol" prefWidth="120.0" text="WRITE DATE" />
-                        <TableColumn fx:id="createDateCol" prefWidth="120.0" text="CREATE DATE" />
-                        <TableColumn fx:id="nameCol" prefWidth="100.0" text="NAME" />
-                    </columns>
-                </TableView>
-            </children>
+        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="629.0" HBox.hgrow="NEVER">
+                <columns>
+                    <TableColumn fx:id="idCol" prefWidth="120.0" text="ID" />
+                    <TableColumn fx:id="sequenceCol" prefWidth="120.0" text="SEQUENCE" />
+                    <TableColumn fx:id="writeDateCol" prefWidth="120.0" text="WRITE DATE" />
+                    <TableColumn fx:id="createDateCol" prefWidth="120.0" text="CREATE DATE" />
+                    <TableColumn fx:id="nameCol" prefWidth="100.0" text="NAME" />
+                </columns>
+            </TableView>
         </HBox>
     </children>
 </VBox>
